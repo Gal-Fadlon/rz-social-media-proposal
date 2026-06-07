@@ -70,6 +70,7 @@
   nav ul a::after{content:"";position:absolute;right:0;bottom:0;height:1px;width:0;background:var(--maroon);transition:width .35s}
   nav ul a:hover::after,nav ul a.active::after{width:100%}
   .nav-toggle{display:none;background:none;border:none;font-size:1.5rem;color:var(--maroon);cursor:pointer}
+  .nav-toggle.open{color:var(--cream)}
 
   section{position:relative;padding:9vw 6vw}
   .eyebrow{font-size:.72rem;letter-spacing:5px;text-transform:uppercase;font-weight:300;opacity:.6;margin-bottom:14px}
@@ -151,8 +152,12 @@
   .card.active li.extra,.card.active li.extra b{color:var(--cream)}
   .card.active li.extra::before{color:var(--cream)}
   .card h3{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:1.8rem;color:var(--maroon);margin-bottom:6px}
-  .card .price-tag{font-family:'Cormorant Garamond',serif;font-size:2.8rem;line-height:1;margin:10px 0 4px}
-  .card .price-tag small{font-size:1.1rem;opacity:.7}
+  .card .price-tag{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:12px 0 4px}
+  .card .price-tag .orig{font-family:'Frank Ruhl Libre',serif;font-weight:400;font-size:1.4rem;color:rgba(43,41,38,.45);text-decoration:line-through;text-decoration-thickness:1.5px}
+  .card .price-tag .now{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:2.7rem;line-height:1;color:var(--maroon);letter-spacing:.5px}
+  .card .price-tag .now small{font-size:1.2rem;font-weight:500;margin-inline-start:5px}
+  .card.active .price-tag .orig{color:rgba(242,236,227,.55)}
+  .card.active .price-tag .now,.card.active .price-tag .now small{color:var(--cream)}
   .card ul{list-style:none;margin-top:18px;margin-bottom:24px}
   .card li{display:flex;gap:10px;align-items:flex-start;font-weight:300;font-size:.95rem;padding:6px 0;border-bottom:1px dashed var(--line)}
   .card.active li{border-color:rgba(242,236,227,.2)}
@@ -226,7 +231,7 @@
   #toast.show{transform:translateX(-50%) translateY(0)}
 
   @media(max-width:820px){
-    nav ul{position:fixed;inset:0 0 0 30%;background:var(--maroon);flex-direction:column;justify-content:center;padding:0 8vw;transform:translateX(100%);transition:transform .4s;gap:30px}
+    nav ul{position:fixed;inset:0;background:var(--maroon);flex-direction:column-reverse;justify-content:center;align-items:center;text-align:center;padding:0;transform:translateX(100%);transition:transform .4s;gap:34px}
     nav ul.open{transform:none}
     nav ul a{color:var(--cream);opacity:.9;font-size:1rem}
     .nav-toggle{display:block;z-index:101}
@@ -308,7 +313,7 @@
     <div class="card reveal d1" data-pkg="גולד">
       <span class="badge">Gold</span>
       <h3>חבילת גולד</h3>
-      <div class="price-tag serif">3,199 <small>₪</small></div>
+      <div class="price-tag"><span class="orig">3,999 ₪</span><span class="now">3,199<small>₪</small></span></div>
       <ul>
         <li><span><b>משך הליווי:</b> 3–4 שעות</span></li>
         <li><span><b>הרכב החבילה:</b> 4 סרטוני רילס</span></li>
@@ -320,9 +325,9 @@
       <a href="#contact" class="choose" data-choose="גולד">בחירת חבילה</a>
     </div>
     <div class="card reveal d2" data-pkg="גולד+">
-      <span class="badge rg">Gold+</span>
+      <span class="badge rg" dir="ltr">Gold+</span>
       <h3>חבילת גולד+</h3>
-      <div class="price-tag serif">3,799 <small>₪</small></div>
+      <div class="price-tag"><span class="orig">4,699 ₪</span><span class="now">3,799<small>₪</small></span></div>
       <ul>
         <li><span><b>משך הליווי:</b> 3–4 שעות</span></li>
         <li><span><b>הרכב החבילה:</b> 4 סרטוני רילס</span></li>
@@ -330,14 +335,14 @@
         <li><span>צילומי שמלות</span></li>
         <li><span>מפגש</span></li>
         <li><span>צילומים זוגיים</span></li>
-        <li class="extra"><span><b>בנוסף:</b> תיעוד וניהול סטורי במהלך האירוע של הכלה</span></li>
+        <li class="extra"><span><b>בנוסף:</b> תיעוד וניהול סטורי במהלך ההתארגנות (בתיאום עם הכלה)</span></li>
       </ul>
       <a href="#contact" class="choose" data-choose="גולד+">בחירת חבילה</a>
     </div>
     <div class="card reveal d3" data-pkg="פלטינום">
       <span class="badge">Platinum</span>
       <h3>חבילת פלטינום</h3>
-      <div class="price-tag serif">4,599 <small>₪</small></div>
+      <div class="price-tag"><span class="orig">5,699 ₪</span><span class="now">4,599<small>₪</small></span></div>
       <ul>
         <li><span><b>משך הליווי:</b> 8–9 שעות</span></li>
         <li><span><b>הרכב החבילה:</b> 6 סרטוני רילס</span></li>
@@ -345,7 +350,6 @@
         <li><span>צילומי שמלות · מפגש</span></li>
         <li><span>צילומים זוגיים</span></li>
         <li><span>חופה · סלואו · ריקודים</span></li>
-        <li class="extra"><span><b>בנוסף:</b> תיעוד וניהול סטורי במהלך האירוע של הכלה</span></li>
       </ul>
       <a href="#contact" class="choose" data-choose="פלטינום">בחירת חבילה</a>
     </div>
@@ -437,8 +441,14 @@
 
   // mobile menu
   const menu = document.getElementById('navMenu');
-  document.getElementById('navToggle').onclick = () => menu.classList.toggle('open');
-  menu.querySelectorAll('a').forEach(a => a.onclick = () => menu.classList.remove('open'));
+  const navToggle = document.getElementById('navToggle');
+  function setMenu(open){
+    menu.classList.toggle('open', open);
+    navToggle.classList.toggle('open', open);
+    navToggle.textContent = open ? '✕' : '☰';
+  }
+  navToggle.onclick = () => setMenu(!menu.classList.contains('open'));
+  menu.querySelectorAll('a').forEach(a => a.onclick = () => setMenu(false));
 
   // active link via IntersectionObserver
   const links = [...document.querySelectorAll('.navlink')];
